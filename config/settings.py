@@ -89,6 +89,16 @@ DATABASES = {
     }
 }
 
+# Redis配置
+REDIS = {
+    'default': {
+        'HOST': '127.0.0.1',
+        'PORT': 6379,
+        'USER': '',
+        'PASSWORD': '',
+        'db': 0,
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -133,3 +143,8 @@ STATICFILES_DIRS = (
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'collect_static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+BASE_NUM_ID = 100000
