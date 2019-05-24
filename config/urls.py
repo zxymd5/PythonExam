@@ -13,9 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from django.conf.urls.static import static
+
+from account import login_render
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +27,11 @@ urlpatterns = [
 
 urlpatterns += [
     path('api/', include(('api.urls', 'api'), namespace='api')),  # 接口
+    path('', login_render.web_index, name = 'web_index'),
+    path('index', login_render.web_index, name = 'web_index'),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.site.site_header = "[智慧校园测评系统]"
